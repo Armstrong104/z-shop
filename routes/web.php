@@ -18,4 +18,5 @@ Route::get('/dashboard', [AdminDashboardController::class,'index'])->name('dashb
 Route::get('/add-product', [ProductController::class,'create'])->name('add-product');
 Route::get('/products', [ProductController::class,'index'])->name('products');
 Route::get('/delete-products/{id}', [ProductController::class,'destroy'])->name('delete-products');
+Route::get('/edit-products/{id}', [ProductController::class,'edit'])->name('edit');
 Route::post('/store-product', [ProductController::class,'store'])->name('store');

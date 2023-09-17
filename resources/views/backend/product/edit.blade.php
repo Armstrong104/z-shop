@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
-            <h1 class="text-center">Add Product</h1>
+            <h1 class="text-center">Edit Product</h1>
             <div class="col-8 offset-2">
                 @if (Session::get('notification'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -15,21 +15,21 @@
                     @csrf
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Title *</label>
-                        <input type="text" class="form-control" name="title">
+                        <input type="text" class="form-control" name="title" value="{{$product->title}}">
                         @error('title')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Description</label>
-                        <input type="text" class="form-control" name="description">
+                        <input type="text" class="form-control" name="description" value="{{$product->description}}">
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Price *</label>
-                        <input type="text" class="form-control" name="price">
+                        <input type="text" class="form-control" name="price" value="{{$product->price}}">
                         @error('price')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -41,7 +41,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="submit" class="btn btn-primary">Update Product</button>
                 </form>
             </div>
         </div>

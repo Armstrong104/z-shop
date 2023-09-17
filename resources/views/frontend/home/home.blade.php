@@ -271,26 +271,31 @@
                     malesuada consequat, nibh erat tempus risus.</p>
             </div>
             <div class="row g-4">
-                @foreach ($products as $product)
-                    <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="product-item text-center border h-100 p-4">
-                            <img class="img-fluid mb-4" src="{{ asset('/') }}frontend-assets/img/product-1.png"
-                                alt="">
-                            <div class="mb-2">
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small class="fa fa-star text-primary"></small>
-                                <small>(99)</small>
+                @if (empty($products))
+                    @foreach ($products as $product)
+                        <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="product-item text-center border h-100 p-4">
+                                <img class="img-fluid mb-4" src="{{ asset('/') }}frontend-assets/img/product-1.png"
+                                    alt="">
+                                <div class="mb-2">
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small>(99)</small>
+                                </div>
+                                <a href="" class="h6 d-inline-block mb-2">{{ $product->title }}</a>
+                                <h5 class="text-primary mb-3">${{ $product->price }}</h5>
+                                <p class="text-dark mb-3">{{ $product->description }}</p>
+                                <a href="" class="btn btn-outline-primary px-3">Add To Cart</a>
                             </div>
-                            <a href="" class="h6 d-inline-block mb-2">{{ $product->title }}</a>
-                            <h5 class="text-primary mb-3">${{ $product->price }}</h5>
-                            <p class="text-dark mb-3">{{ $product->description }}</p>
-                            <a href="" class="btn btn-outline-primary px-3">Add To Cart</a>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                        
+                    <h1 class="text-danger text-center">No Product Found!</h1>
+                @endif
             </div>
         </div>
     </div>
