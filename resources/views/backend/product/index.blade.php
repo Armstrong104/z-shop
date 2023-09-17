@@ -35,7 +35,7 @@
                                 <td>{{ $product->image }}</td>
                                 <td>
                                     <a href="{{route('edit',$product->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="{{ route('delete-products',$product->id) }}" class="btn btn-sm btn-danger ms-2">Delete</a>
+                                    <a href="{{ route('destroy',$product->id) }}" class="btn btn-sm btn-danger ms-2">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

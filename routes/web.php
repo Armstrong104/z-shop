@@ -18,7 +18,7 @@ Route::get('/about', [AboutController::class,'index'])->name('about');
 Route::get('/dashboard', [AdminDashboardController::class,'index'])->name('dashboard');
 Route::get('/add-product', [ProductController::class,'create'])->name('add-product');
 Route::get('/products', [ProductController::class,'index'])->name('products');
-Route::get('/delete-products/{id}', [ProductController::class,'destroy'])->name('delete-products');
+Route::get('/delete-products/{id}', [ProductController::class,'destroy'])->name('destroy');
 Route::get('/edit-product/{id}', [ProductController::class,'edit'])->name('edit');
 Route::post('/store-product', [ProductController::class,'store'])->name('store');
 Route::post('/update-product/{id}', [ProductController::class,'update'])->name('update');
