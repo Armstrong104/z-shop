@@ -20,10 +20,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required | max:150',
+            'title' => 'required | max:20',
             'price' => 'required | numeric | min:0 | not_in:0',
             'image' => 'image | mimes:jpg,png,bmp,webp',
-            'description' => 'max:20'
+            'description' => 'max:30'
         ],[
             'title.required' => 'Sir Please Give A Title',
         ]);
@@ -50,10 +50,10 @@ class ProductController extends Controller
     public function update(Request $request,int $id)
     {
         $request->validate([
-            'title' => 'required | max:150',
+            'title' => 'required | max:20',
             'price' => 'required | numeric | min:0 | not_in:0',
             'image' => 'image | mimes:jpg,png,bmp,webp',
-            'description' => 'max:20'
+            'description' => 'max:30'
         ],[
             'title.required' => 'Sir Please Give A Title',
         ]);
