@@ -271,7 +271,7 @@
                     malesuada consequat, nibh erat tempus risus.</p>
             </div>
             <div class="row g-4">
-                @if (empty($products))
+                @if ($products->count() != 0)
                     @foreach ($products as $product)
                         <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                             <div class="product-item text-center border h-100 p-4">
