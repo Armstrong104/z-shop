@@ -22,10 +22,9 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required | max:50',
             'price' => 'required | numeric | min:0 | not_in:0',
-            'image' => 'image | mimes:jpg,png,bmp,webp',
-            'description' => 'max:100'
+            'image' => 'image'
         ],[
-            'title.required' => 'Sir Please Give A Title',
+            'title.required' => 'Please Give A Title',
         ]);
 
         $image = $request->image;
@@ -35,7 +34,9 @@ class ProductController extends Controller
         $product->description   = $request->description;
         $product->price         = $request->price;
         if ($image) {
-            $product->image         = $image->getClientOriginalName();
+            $imgName = rand().'.'.$image->extension();
+            $image->move('product-images/',$imgName);
+            $product->image = 'product-images/'.$imgName;
         }
 
         $product->save();
@@ -52,8 +53,7 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required | max:50',
             'price' => 'required | numeric | min:0 | not_in:0',
-            'image' => 'image | mimes:jpg,png,bmp,webp',
-            'description' => 'max:100'
+            'image' => 'image'
         ],[
             'title.required' => 'Sir Please Give A Title',
         ]);
@@ -63,7 +63,15 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
-         // $product->image = $request->image;
+        $image = $request->image;
+        if($image){
+            if(file_exists($product->image)){
+                unlink($product->image);
+            }
+            $imgName = rand().'.'.$image->extension();
+            $image->move('product-images/',$imgName);
+            $product->image = 'product-images/'.$imgName;
+        }
         $product->save();
 
         return to_route('products')->with('notification','Product Updated Successfully!');
@@ -78,6 +86,9 @@ class ProductController extends Controller
     public function destroy(int $id)
     {
         $product = Product::find($id);
+        if(file_exists($product->image)){
+            unlink($product->image);
+        }
         $product->delete();
         return back()->with('notification', 'Product Deleted Successfully!');
     }
